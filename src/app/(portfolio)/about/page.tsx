@@ -7,6 +7,9 @@ import { useState } from 'react';
 export default function About() {
   const { isDeveloperMode } = usePortfolio();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [certificateModal, setCertificateModal] = useState<{ open: boolean; img?: string; company?: string }>(
+    { open: false }
+  );
 
   const education = [
     {
@@ -34,38 +37,91 @@ export default function About() {
     }
   ];
 
-  const experience = [
+  // Helper function to convert date string to timestamp
+  const getTimestamp = (dateStr: string) => {
+    const [start] = dateStr.split(' - ');
+    const [month, year] = start.split(' ');
+    const months = {
+      'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+      'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+    };
+    return new Date(parseInt(year), months[month as keyof typeof months]).getTime();
+  };
+
+  interface Experience {
+    company: string;
+    role: string;
+    period: string;
+    description: string;
+    logo?: string;
+  }
+
+  interface Experience {
+    company: string;
+    role: string;
+    period: string;
+    description: string;
+    logo?: string;
+    location?: string;
+    certificateImg?: string;
+  }
+
+  const experience: Experience[] = [
+    {
+      company: 'EPAM Systems',
+      role: 'Junior Software Test Automation Engineer',
+      period: 'Jul 2024 - Present · 1 yr 4 mos',
+      description: 'Location: Hyderabad, Telangana, India · On-site',
+      logo: 'https://media.licdn.com/dms/image/v2/D4D0BAQHBM1NmkFO9_g/company-logo_100_100/company-logo_100_100/0/1736349454702/epam_systems_logo?e=1762992000&v=beta&t=3ufYvQZQsFiatFwvzpwZfdUshR8Pdvb5VJ8bPRY2VxI',
+      location: 'Hyderabad, Telangana, India · On-site',
+      // certificateImg: '/profile-placeholder.jpg'
+    },
     {
       company: 'Revolute Tech',
       role: 'SDE-Frontend',
-      period: 'Aug 2023 - Oct 2023',
-      description: 'My primary responsibilities included translating UI/UX design wireframes into actual code, ensuring a seamless and visually appealing user experience.'
+      period: 'Aug 2023 - Oct 2023 · 3 mos',
+      description: `• My primary responsibilities included translating UI/UX design wireframes into actual code, ensuring a seamless and visually appealing user experience.\n\n• I utilized HTML, CSS, and JavaScript, along with frameworks such as React.js, to build dynamic and responsive web pages. This role required a keen eye for detail and a strong understanding of modern web development practices.\n\n• I also contributed to the optimization of web applications for maximum speed and scalability, which included code refactoring and improving loading times.`,
+      logo: 'https://media.licdn.com/dms/image/v2/C560BAQHfLEfTjN7z_w/company-logo_100_100/company-logo_100_100/0/1644247440251?e=1762992000&v=beta&t=8sHIHnUO-9s_L3oR0v2ALMILh0Ac1xdD1608Cw_cNAo',
+      location: 'Remote',
+      certificateImg: 'https://media.licdn.com/dms/image/v2/D562DAQEUGV6CAtS1RA/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1716115641874?e=1761811200&v=beta&t=H5zNpQUiN6B7XZpI9n5mZntL31wqUHWQ1iZhZwGBo-o'
     },
     {
-      company: 'TheTechBridge',
+      company: 'theTechBridge',
       role: 'React Developer',
-      period: 'Jan 2023 - Jul 2023',
-      description: ''
+      period: 'Jan 2023 - Jul 2023 · 7 mos',
+      description: `• During my internship, I worked on the project 'Version 2 for Educase,' where I played a crucial role in developing the web panel using REACTJS. I was responsible for creating and implementing a Custom Hook and managed to single-handedly complete the project.\n\n• My focus on optimizing the application's performance ensured a seamless and efficient user experience. This involved ensuring that the web panel functioned smoothly across various devices and screen sizes.\n\n• I was actively involved in client communication, handling requirement analysis and design collaboration. This role required me to effectively translate client needs into technical specifications and design solutions.`,
+      // logo: 'https://media.licdn.com/dms/image/D560BAQG5AYktgn-FPA/company-logo_100_100/0/1695661056731/thetechbridge_logo?e=1706140800&v=beta&t=sK07OKxnjpMepg9JgURr8jDTOQytl5K9AkBMpO7AA0k',
+      location: 'Remote',
+      certificateImg: 'https://media.licdn.com/dms/image/v2/D562DAQGzZgk9ADzrHQ/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1716102384912?e=1761811200&v=beta&t=Xnz6E9fFW1eZOalFnG8VxYsvNPQVHNZIG_YmFMRUR-k'
     },
     {
       company: 'Olcademy',
       role: 'Cyber Security Intern',
-      period: 'Jul 2022 - Nov 2022',
-      description: 'Spearheaded cybersecurity initiatives as an intern at Olcademy focusing on securing the payment infrastructure and entire website against hacking threats and malware attacks.'
+      period: 'Jul 2022 - Nov 2022 · 5 mos',
+      description: `• Spearheaded cybersecurity initiatives as an intern at Olcademy, focusing on securing the payment infrastructure and entire website against hacking threats and malware attacks.\n\n• Implemented rigorous security measures, conducted frequent vulnerability assessments, and developed proactive strategies to fortify the digital ecosystem.\n\n• Leveraged dual expertise as a web developer to seamlessly integrate robust security protocols into the website's architecture, ensuring a comprehensive and resilient online presence for the company.`,
+      logo: 'https://media.licdn.com/dms/image/v2/C510BAQFnDqzR-2gxPQ/company-logo_100_100/company-logo_100_100/0/1631415706251/the_olcademy_logo?e=1762992000&v=beta&t=xydGXNlQ5Z59kOMSgZG861SCJpzcpbNzd-ZKb51zr2Y',
+      location: 'Remote',
+      certificateImg: 'https://media.licdn.com/dms/image/v2/D562DAQHzjticHtnPMg/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1707038309474?e=1761811200&v=beta&t=WPJVgV7ofaivlhjt_SDzenIXFNX3s1Z9YC9OuNiBbOE'
     },
     {
       company: 'Olcademy',
-      role: 'Project Manager Intern',
-      period: 'Nov 2021 - Feb 2022',
-      description: 'Orchestrated and effectively supervised a team specializing in Software Testing and Cyber Security during the internship tenure. Directed and optimized team performance, implementing strategies that significantly increased efficiency and productivity. Maintained consistent communication with the senior management team, providing regular project updates and swiftly addressing any concerns or hurdles that arose.'
+      role: 'Project Management Intern',
+      period: 'Nov 2021 - Feb 2022 · 4 mos',
+      description: `• Orchestrated and effectively supervised a team specializing in Software Testing and Cyber Security during the internship tenure.\n\n• Directed and optimized team performance, implementing strategies that significantly increased efficiency and productivity.\n\n• Maintained consistent communication with the senior management team, providing regular project updates and swiftly addressing any concerns or hurdles that arose.`,
+      logo: 'https://media.licdn.com/dms/image/v2/C510BAQFnDqzR-2gxPQ/company-logo_100_100/company-logo_100_100/0/1631415706251/the_olcademy_logo?e=1762992000&v=beta&t=xydGXNlQ5Z59kOMSgZG861SCJpzcpbNzd-ZKb51zr2Y',
+      location: 'Remote',
+      certificateImg: 'https://media.licdn.com/dms/image/v2/D562DAQGH-W-9VfIv0g/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1707036323568?e=1761811200&v=beta&t=FCk1RvDQo4XbtfYUqqGN4iuBIQu11f4DjLogAufGlsc'
     },
     {
-      company: 'Sarp MindFire Pvt.Ltd',
-      role: 'Web Developer Intern',
-      period: 'Oct 2020 - Nov 2020',
-      description: 'Spearheaded frontend development tasks as a Web Developer intern, contributing to the creation of user-centric interfaces. Demonstrated proficiency in handling two pivotal projects: the development of a Legal Advisory platform and a School Website, ensuring a seamless user experience. Conducted rigorous testing protocols to validate website functionalities, guaranteeing optimal performance and user-friendliness.'
+      company: 'SARP MindFire',
+      role: 'Web Development Intern',
+      period: 'Oct 2020 - Nov 2020 · 2 mos',
+      description: `• Spearheaded frontend development tasks as a Web Developer intern, contributing to the creation of user-centric interfaces.\n\n• Demonstrated proficiency in handling two pivotal projects: the development of a Legal Advisory platform and a School Website, ensuring a seamless user experience.\n\n• Conducted rigorous testing protocols to validate website functionalities, guaranteeing optimal performance and user-friendliness.`,
+      logo:'https://media.licdn.com/dms/image/v2/C4D0BAQG_JO93FOF1Zw/company-logo_100_100/company-logo_100_100/0/1630520134335/sarp_mindfire_pvt_ltd_logo?e=1762992000&v=beta&t=PNKsVpI2EGjS5D0_TjpszYSHFgZdmIGHRx8_SArW0Hc',
+      location: 'Patna, Bihar, India · On-site',
+      certificateImg: 'https://media.licdn.com/dms/image/v2/D562DAQFxuggDVJ1qnQ/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1707038675114?e=1761811200&v=beta&t=mwJ4oSPXt3Uk6jbnzLHgBGp0Dz21oUX8SphEYqCjVEQ'
     }
-  ];
+  ].sort((a, b) => getTimestamp(b.period) - getTimestamp(a.period));
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -109,91 +165,185 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Experience Section - Below Education */}
+        {/* Experience Section - Modern Interactive Timeline
+            Features:
+            - Animated cards with hover effects
+            - Color-coded sections for visual hierarchy
+            - Interactive timeline dots with click feedback
+            - Smooth reveal animations for descriptions
+            - Responsive layout that adapts to screen size
+            - Material design with elevation shadows
+        */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Experience</h2>
-          <div className="relative pl-8 ml-4 border-l-4 border-blue-500">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-1">Experience</h2>
+          <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">{experience.length} Experiences</div>
+          <div className="relative" style={{ maxWidth: '800px', margin: '0 auto', paddingTop: '40px', minHeight: '800px' }}>
+            <div className="absolute h-full w-1" style={{
+              left: '120px',
+              background: 'linear-gradient(to bottom, #7ab800 0%, #0085c3 35%, #f2af00 50%, #ce1126 65%, #6e2585 100%)',
+              zIndex: 0
+            }}></div>
             {experience.map((exp, index) => (
               <motion.div
                 key={exp.company + exp.role + exp.period}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 * index }}
-                className="mb-10 relative"
+                className="mb-8 relative"
+                style={{ perspective: '1000px', marginTop: index === 0 ? '0' : '100px' }}
               >
                 {/* Interactive Timeline dot */}
                 <button
                   type="button"
                   aria-label="Expand experience details"
-                  className={`absolute -left-5 top-2 w-6 h-6 flex items-center justify-center rounded-full border-4 z-10 transition-all duration-300 ${activeIndex === index ? 'bg-blue-700 border-blue-300 scale-110' : 'bg-blue-500 border-white dark:border-gray-800'}`}
+                  className={`absolute left-[120px] -top-3 w-6 h-6 flex items-center justify-center rounded-full border-4 z-10 transition-all duration-300 ${activeIndex === index ? 'scale-110' : ''}`}
                   onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                  style={{
+                    backgroundColor: index === 0 ? '#7ab800' : 
+                                   index === 1 ? '#0085c3' : 
+                                   index === 2 ? '#f2af00' : 
+                                   index === 3 ? '#ce1126' : '#6e2585',
+                    borderColor: 'white'
+                  }}
                 >
-                  <span className={`block w-2 h-2 rounded-full ${activeIndex === index ? 'bg-white' : 'bg-blue-200'}`}></span>
+                  <span className="block w-2 h-2 rounded-full bg-white"></span>
                 </button>
                 <motion.div
                   initial={false}
                   animate={{ 
-                    scale: activeIndex === index ? 1.05 : 1,
-                    x: activeIndex === index ? (index % 2 === 0 ? 20 : -20) : 0
+                    scale: activeIndex === index ? 1.02 : 1,
+                    x: activeIndex === index ? 10 : 0
                   }}
                   whileHover={{ 
-                    scale: 1.05,
-                    x: index % 2 === 0 ? 20 : -20,
+                    scale: 1.02,
+                    x: 10,
                     transition: { duration: 0.3 }
                   }}
-                  className={`overflow-hidden bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition-all duration-300 cursor-pointer`}
-                  onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                  className={`overflow-hidden bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition-all duration-300 cursor-pointer relative ml-[160px]`}
                   style={{
+                    width: '500px',
+                    transformStyle: 'preserve-3d',
+                    backfaceVisibility: 'visible',
+                    perspective: '1000px',
                     borderWidth: '3px',
                     borderStyle: 'solid',
-                    borderColor: index === 0 ? '#7ab800' : 
-                               index === 1 ? '#0085c3' : 
-                               index === 2 ? '#f2af00' : 
-                               index === 3 ? '#ce1126' : '#6e2585'
+                    borderColor:
+                      index === 0 ? '#7ab800' :
+                      index === 1 ? '#0085c3' :
+                      index === 2 ? '#f2af00' :
+                      index === 3 ? '#ce1126' :
+                      index === 4 ? '#6e2585' :
+                      '#ff6f61', // new color for last card if more than 5
                   }}
+                  onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                    <h3 className="text-lg font-semibold" style={{
-                      color: index === 0 ? '#7ab800' : 
-                             index === 1 ? '#0085c3' : 
-                             index === 2 ? '#f2af00' : 
-                             index === 3 ? '#ce1126' : '#6e2585'
-                    }}>{exp.role}</h3>
-                    <span className="text-sm px-3 py-1 rounded" style={{
-                      backgroundColor: index === 0 ? '#7ab800' : 
-                                     index === 1 ? '#0085c3' : 
-                                     index === 2 ? '#f2af00' : 
-                                     index === 3 ? '#ce1126' : '#6e2585',
-                      color: 'white'
-                    }}>{exp.period}</span>
+                  <div className="flex items-start gap-4">
+                    <div className="flex flex-col items-center gap-2">
+                      {exp.logo ? (
+                        <img 
+                          src={exp.logo} 
+                          alt={`${exp.company} logo`} 
+                          className="w-12 h-12 rounded-full object-cover flex-shrink-0" 
+                        />
+                      ) : (
+                        <span className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-200 to-purple-300 animate-bounce text-2xl select-none">
+                          🦄
+                        </span>
+                      )}
+                      {exp.certificateImg && (
+                        <button
+                          type="button"
+                          className="mt-2 px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 border border-blue-700"
+                          onClick={e => {
+                            e.stopPropagation();
+                            setCertificateModal({ open: true, img: exp.certificateImg, company: exp.company });
+                          }}
+                        >
+                          View Certificate
+                        </button>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                        <h3 className="text-lg font-semibold" style={{
+                          color:
+                            index === 0 ? '#7ab800' :
+                            index === 1 ? '#0085c3' :
+                            index === 2 ? '#f2af00' :
+                            index === 3 ? '#ce1126' :
+                            index === 4 ? '#6e2585' :
+                            '#ff6f61',
+                        }}>{exp.role}</h3>
+                        <span className="text-sm px-3 py-1 rounded" style={{
+                          backgroundColor:
+                            index === 0 ? '#7ab800' :
+                            index === 1 ? '#0085c3' :
+                            index === 2 ? '#f2af00' :
+                            index === 3 ? '#ce1126' :
+                            index === 4 ? '#6e2585' :
+                            '#ff6f61',
+                          color: 'white'
+                        }}>{exp.period}</span>
+                      </div>
+                      <p className="font-semibold mb-1" style={{
+                        color:
+                          index === 0 ? '#7ab800' :
+                          index === 1 ? '#0085c3' :
+                          index === 2 ? '#f2af00' :
+                          index === 3 ? '#ce1126' :
+                          index === 4 ? '#6e2585' :
+                          '#ff6f61',
+                      }}>{exp.company}</p>
+                      {exp.location && (
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                          {exp.location}
+                        </p>
+                      )}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ 
+                          opacity: activeIndex === index ? 1 : 0.7,
+                          y: activeIndex === index ? 0 : 10
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="text-gray-600 dark:text-gray-300 whitespace-pre-line"
+                      >
+                        {exp.description}
+                      </motion.div>
+                    </div>
                   </div>
-                  <p className="font-semibold mb-2" style={{
-                    color: index === 0 ? '#7ab800' : 
-                           index === 1 ? '#0085c3' : 
-                           index === 2 ? '#f2af00' : 
-                           index === 3 ? '#ce1126' : '#6e2585'
-                  }}>{exp.company}</p>
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ 
-                      opacity: activeIndex === index ? 1 : 0.7,
-                      y: activeIndex === index ? 0 : 10
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="text-gray-600 dark:text-gray-300"
-                  >
-                    {exp.description}
-                  </motion.p>
                 </motion.div>
               </motion.div>
             ))}
           </div>
         </motion.div>
       </motion.div>
+      {/* Certificate Modal */}
+      {certificateModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 max-w-lg w-full relative flex flex-col items-center">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 dark:hover:text-white text-2xl font-bold"
+              onClick={() => setCertificateModal({ open: false })}
+              aria-label="Close certificate modal"
+            >
+              &times;
+            </button>
+            <h3 className="mb-4 text-lg font-semibold text-center text-gray-800 dark:text-white">
+              {certificateModal.company} Certificate
+            </h3>
+            <img
+              src={certificateModal.img}
+              alt={certificateModal.company + ' certificate'}
+              className="max-h-96 w-auto rounded border border-gray-300 dark:border-gray-700 shadow"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

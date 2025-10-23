@@ -1,3 +1,13 @@
+/* Timeline CSS Styling
+   Features:
+   - Smooth 3D rotation animations on hover
+   - Gradient timeline line with color transitions
+   - Responsive layout with mobile optimizations
+   - Interactive checkmarks with rotation effects
+   - Color-coded sections with consistent theme
+   - Material design-inspired cards with shadows
+*/
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 *
 {margin:0;padding:0;border:0}
