@@ -20,6 +20,8 @@ import {
   DiCodepen,
   DiSublime,
   DiJenkins,
+  DiVisualstudio,
+  DiIntellij,
 } from "react-icons/di";
 import {
   SiRedis,
@@ -53,11 +55,19 @@ import {
   SiAmazonec2,
   SiDocker,
   SiKubernetes,
+  SiJira,
+  SiGatling,
+  SiApachemaven,
+  SiApacheant,
+  SiGradle,
+  SiConfluence,
+  SiNotepadplusplus,
   // SiTestng,
   // SiPlaywrigh,
   // SiRestassured,
 } from "react-icons/si";
 import { TbBrandGolang } from "react-icons/tb";
+import { BiNotepad } from "react-icons/bi";
 
 
 // =============================
@@ -122,6 +132,8 @@ function Toolstack() {
     { icon: <SiGooglecolab />, name: "Google Colab" },
     { icon: <SiAnaconda />, name: "Anaconda" },
     { icon: <SiJupyter />, name: "Jupyter" },
+    {icon:<SiAnaconda/>,name:"Anaconda Navigator"},
+    { icon: <BiNotepad />, name: "Notepad" },
   ];
 
   return (
@@ -170,6 +182,17 @@ function QASkillset() {
     
     { icon: <SiSqlite />, name: "SQLite" },
     { icon: <SiPostgresql />, name: "PostgreSQL" },
+    {icon:<SiJira/>, name:"Jira"},
+    {icon:<SiSlack/>, name:"Slack"},
+    {icon:<SiGatling/>, name:"Gatling"},
+    {icon:<SiApachemaven/>, name:"Apache Maven"},
+    {icon:<SiApacheant/>, name:"Apache Ant"},
+    {icon:<SiGradle/>,name:"Gradle"},
+    {icon:<SiConfluence/>, name:"Confluence"},
+    {icon:<DiVisualstudio />, name:"Visual Studio Code"},
+    {icon:<DiIntellij/>, name:"IntelliJ IDEA"},
+    {icon:<SiNotepadplusplus/>, name:"Notepad++"}
+  
   ];
 
   return (
