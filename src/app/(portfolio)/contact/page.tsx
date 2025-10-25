@@ -9,22 +9,22 @@ export default function Contact() {
     {
       name: 'GitHub',
       icon: <FaGithub className="text-2xl" />,
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/shivkantkumar098',
     },
     {
       name: 'LinkedIn',
       icon: <FaLinkedin className="text-2xl" />,
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://linkedin.com/in/shivkantkumar',
     },
     {
       name: 'LeetCode',
       icon: <SiLeetcode className="text-2xl" />,
-      url: 'https://leetcode.com/yourusername',
+      url: 'https://leetcode.com/golu_sharma_24',
     },
     {
       name: 'GeeksforGeeks',
       icon: <SiGeeksforgeeks className="text-2xl" />,
-      url: 'https://auth.geeksforgeeks.org/user/yourusername',
+      url: 'https://www.geeksforgeeks.org/user/shivkantkumar/',
     },
   ];
 
@@ -53,19 +53,37 @@ export default function Contact() {
             <div className="space-y-4">
               <div className="flex items-center text-gray-700 dark:text-gray-300">
                 <FaEnvelope className="mr-2" />
-                <a href="mailto:your.email@example.com" className="hover:text-blue-600">
-                  your.email@example.com
+                <a href="mailto:kumar.shivkant87@gmail.com" className="hover:text-blue-600">
+                 kumar.shivkant87@gmail.com
                 </a>
               </div>
               <div className="flex items-center">
-                <a
-                  href="/path-to-your-resume.pdf"
-                  download
-                  className="flex items-center text-blue-600 hover:text-blue-700"
-                >
-                  <FaDownload className="mr-2" />
-                  Download Resume
-                </a>
+                {/* Two resume download options: Developer and QA */}
+                <div className="flex space-x-4">
+                    <a
+                    href="https://drive.google.com/file/d/11R7wm7glrn8BccwZDBchMPZtiX9trYPn/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-blue-600 hover:text-blue-700"
+                    title="Download Developer Resume (PDF)"
+                    aria-label="Download Developer Resume"
+                    >
+                    <FaDownload className="mr-2" />
+                    Dev Resume
+                    </a>
+
+                    <a
+                    href="https://drive.google.com/file/d/1q-tutk_9y9nEKKPntG0KfnuzMwpDMtME/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-blue-600 hover:text-blue-700"
+                    title="Download QA Resume (PDF)"
+                    aria-label="Download QA Resume"
+                    >
+                    <FaDownload className="mr-2" />
+                    QA Resume
+                    </a>
+                </div>
               </div>
             </div>
           </motion.div>
