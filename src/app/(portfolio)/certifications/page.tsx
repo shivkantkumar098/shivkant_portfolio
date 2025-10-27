@@ -12,20 +12,7 @@ export default function Certifications() {
   const certifications = isDeveloperMode
     ? [
         // 🧑‍💻 Developer Certifications
-        {
-          title: 'AWS Certified Developer',
-          issuer: 'Amazon Web Services',
-          date: '2025',
-          image: '/1.jpg',
-          link: '#',
-        },
-        {
-          title: 'Microsoft Certified: Azure Developer Associate',
-          issuer: 'Microsoft',
-          date: '2024',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
+       
         {
           title: 'Learning Java Collections',
           issuer: 'LinkedIn Learning',
@@ -40,13 +27,7 @@ export default function Certifications() {
           image: '/css and javascript udemy.jpg',
           link: '#',
         },
-        {
-          title: 'Backend Development Using NodeJS',
-          issuer: 'DevTown',
-          date: 'Feb 2022',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
+       
         {
           title: 'HTML Workshop of 8 Weeks',
           issuer: 'Geeksforgeeks',
@@ -84,13 +65,7 @@ export default function Certifications() {
           image: '/bootstrap.png',
           link: '#',
         },
-        {
-          title: 'Get Start With React',
-          issuer: 'DevTown',
-          date: 'Dec 2021',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
+       
         {
           title: 'Machine Learning',
           issuer: 'Effervescence, IIIT Allahabad',
@@ -98,25 +73,13 @@ export default function Certifications() {
           image: '/Machine Learning.jpg',
           link: '#',
         },
-        {
-          title: 'Machine Learning Model Deployment Using Flask',
-          issuer: 'DevTown',
-          date: 'Jan 2022',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
-        {
-          title: 'Data Analyst Using Python',
-          issuer: 'DevTown',
-          date: 'Feb 2022',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
+        
+      
         {
           title: 'Introduction to Cybersecurity Tools & Cyber Attacks',
           issuer: 'Coursera',
           date: 'Jan 2022',
-          image: '/profile-placeholder.jpg',
+          image: '/Introduction to Cybersecurity Tools & Cyber Attacks.png',
           link: 'https://www.credly.com/badges/f207872b-94a8-4906-b9c7-19a9adbdbea4/public_url',
         },
         {
@@ -126,40 +89,26 @@ export default function Certifications() {
           image: '/cyber Security.jpg',
           link: '#',
         },
-        {
-          title: 'Build a Full Website Using WordPress',
-          issuer: 'Coursera',
-          date: 'Jul 2021',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
-        {
-          title:
-            'Compose and Program Music in Python using Earsketch',
-          issuer: 'Coursera',
-          date: 'Jan 2021',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
+        
         {
           title: 'C++ COURSE',
           issuer: 'Sololearn',
           date: 'Jun 2020',
-          image: '/profile-placeholder.jpg',
+          image: '/c++.png',
           link: '#',
         },
         {
           title: 'JAVA COURSE',
           issuer: 'Sololearn',
           date: 'Jun 2020',
-          image: '/profile-placeholder.jpg',
+          image: '/java-solorlearn.png',
           link: '#',
         },
         {
           title: 'HTML COURSE',
           issuer: 'Sololearn',
           date: 'May 2020',
-          image: '/profile-placeholder.jpg',
+          image: '/html-solorlearn.png',
           link: '#',
         },
       ]
@@ -212,35 +161,29 @@ export default function Certifications() {
           title: 'Software Testing',
           issuer: 'NPTEL',
           date: 'Jul 2022',
-          image: '/profile-placeholder.jpg',
+          image: '/nptel.jpg',
           link: '#',
         },
         {
           title: 'Data Mining',
           issuer: 'NPTEL',
           date: 'Jan 2023',
-          image: '/profile-placeholder.jpg',
+          image: '/nptel.jpg',
           link: '#',
         },
         {
           title: 'HackerRank Certificate of JAVA Basic',
           issuer: 'HackerRank',
           date: 'Dec 2020',
-          image: '/profile-placeholder.jpg',
+          image: '/Hackerrank.png',
           link: '#',
         },
-        {
-          title: 'Certificate of Appreciation',
-          issuer: 'DevTown',
-          date: 'Jan 2022',
-          image: '/profile-placeholder.jpg',
-          link: '#',
-        },
+       
         {
           title: 'Student Coordinator',
           issuer: 'CodeChef CU Chapter',
           date: 'Sep 2021',
-          image: '/profile-placeholder.jpg',
+          image: '/codechef.png',
           link: '#',
         },
       ];
