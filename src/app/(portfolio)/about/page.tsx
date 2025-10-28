@@ -342,7 +342,10 @@ export default function About() {
               className="max-h-96 w-auto rounded border border-gray-300 dark:border-gray-700 shadow"
             />
           </div>
+          
         </div>
+        
+        
       )}
     </div>
   );

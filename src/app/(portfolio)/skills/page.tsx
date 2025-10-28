@@ -68,6 +68,7 @@ import {
 } from "react-icons/si";
 import { TbBrandGolang } from "react-icons/tb";
 import { BiNotepad } from "react-icons/bi";
+import LeetCodeHeatmap from "@/components/LeetCodeHeatmap";
 
 
 // =============================
@@ -231,7 +232,9 @@ function SkillsPage() {
         </>
       ) : (
         <QASkillset />
+        
       )}
+      <LeetCodeHeatmap />
     </>
   );
 }

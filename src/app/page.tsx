@@ -4,7 +4,7 @@ import { usePortfolio } from '@/context/PortfolioContext';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import LeetCodeHeatmap from "@/components/LeetCodeHeatmap";
 export default function Home() {
   const { isDeveloperMode } = usePortfolio();
 
@@ -47,22 +47,26 @@ export default function Home() {
           </motion.div>
         </motion.div>
         
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex-1 flex justify-center"
-        >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600">
-            <Image
-              src="/myPic.jpg"
-              alt="Profile Picture"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
+      <motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.5, delay: 0.2 }}
+  className="flex-1 flex flex-col items-center justify-center"
+>
+  <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 mb-8">
+    <Image
+      src="/myPic.jpg"
+      alt="Profile Picture"
+      fill
+      className="object-cover"
+      priority
+    />
+  </div>
+
+  {/* Heatmap below profile picture */}
+  
+</motion.div>
+
       </div>
     </div>
   );
