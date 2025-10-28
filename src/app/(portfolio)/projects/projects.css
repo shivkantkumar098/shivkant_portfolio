@@ -1,0 +1,30 @@
+.qa-tech-icon {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.qa-tech-icon:hover {
+  filter: grayscale(0%) brightness(1);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #111;
+  color: white;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.group:hover .tooltip {
+  opacity: 1;
+}

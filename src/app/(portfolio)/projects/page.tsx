@@ -1,5 +1,5 @@
 'use client';
-
+import './projects.css';
 import { usePortfolio } from '@/context/PortfolioContext';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -24,7 +24,8 @@ import {
 export default function Projects() {
   const { isDeveloperMode } = usePortfolio();
 
-  const projects = [
+  // 🧑‍💻 Developer Projects
+  const developerProjects = [
     {
       title: 'Study Notion',
       description: 'StudyNotion is a full-featured EdTech platform that enables users to create, consume, and rate educational content. It aims to make learning interactive and accessible for students, and provides a space for instructors to share expertise.',
@@ -104,8 +105,71 @@ export default function Projects() {
       technologies: ['HTML', 'CSS', 'JavaScript', 'Tailwind CSS'],
       github: 'https://github.com/golu098/pulseplus',
       live: 'https://pulseplus.vercel.app'
-    }
+    },
   ];
+
+  // 🧪 QA Projects
+  const qaProjects = [
+    {
+      title: 'DataHolder ',
+      description: 'A behavior-driven automation testing framework built using Selenium, Java, and Cucumber for a registration form module. It follows the Page Object Model design, integrates Gherkin for readable scenarios, and generates detailed Extent Reports for test execution insights',
+      image: '/regForm.webp',
+      technologies: ['Java', 'Selenium', 'TestNG', 'Cucumber','Extent Reports', 'Maven'],
+      github: 'https://github.com/shivkantkumar098/Registration_Form/tree/BDD_FrameWork',
+      live: '',
+    },
+    {
+      title: 'TripTailor',
+      description: 'Designed and implemented a behavior-driven test automation framework for a Travel Recommendation app that generates smart itineraries using real-time API data. Automated modules include destination search, itinerary creation, pagination, and UI validation.',
+      image: '/tripTrilor.png',
+      technologies: ['Java', 'Cucumber', 'Selenium', 'Maven','Rest Assured','TestNG', 'Postman','JUnit'],
+      github: 'https://github.com/shivkantkumar098/TravelRecommendation/tree/develop',
+      live: '',
+    },
+    {
+      title: 'Ecommerce UI Testing',
+      description: 'Designed and implemented a robust UI automation framework for Amazon’s e-commerce platform using Java, Selenium WebDriver, Cucumber, and TestNG. The framework supports BDD-style test scripting, parallel execution, and cross-browser testing. Advanced scenarios include validating dropdowns, performing mouse hovers and drag-and-drop actions, handling checkboxes, executing JavaScript commands, verifying broken links, and generating rich Allure and TestNG reports',
+      image: '/amazon.jpg',
+      technologies: ['Java', 'Cucumber', 'Selenium', 'Maven','TestNG'],
+      github: 'https://github.com/shivkantkumar098/amzonWebSiteTesting',
+      live: '',
+    },
+     {
+      title: 'FinSecureAuto',
+      description: 'FinSecureAuto ensures seamless integration of automation within banking workflows, enabling faster release cycles with minimal risk.It stands as a robust, scalable, and reusable automation solution tailored for financial domain applications requiring high accuracy and compliance.The framework focuses on maintaining end-to-end validation of mission-critical modules, ensuring zero functional regressions.By combining modular test design and CI/CD integration, it accelerates testing efficiency and improves traceability across builds.Ultimately, FinSecureAuto empowers QA teams to deliver secure, high-quality banking solutions with confidence and consistency.',
+       image: '/banking.png',
+      technologies: ['Java', 'Cucumber', 'Selenium', 'Maven','TestNG'],
+      github: 'https://github.com/shivkantkumar098/FinSecureAuto',
+      live: '',
+    },
+    {
+      title: 'SauceDemo E-Commerce',
+      description: 'A complete end-to-end automation testing framework built for the SauceDemo e-commerce platform, using Java, Selenium WebDriver, and TestNG. The framework is designed to validate key user journeys such as login, adding products to the cart, checking out, and verifying order completion.The main objective of this project is to ensure UI stability, functional accuracy, and regression reliability across different test environments. Using a Page Object Model (POM) architecture, the framework maintains scalability and clean code separation for easy maintenance.',
+      image: '/ecom.png',
+      technologies: ['Java', 'Cucumber', 'Selenium', 'Maven','TestNG'],
+      github: 'https://github.com/shivkantkumar098/sauceDemo',
+      live: '',
+    },
+  ];
+
+  // 👇 map your QA tech names to logo URLs (you’ll replace these with your own black icons)
+  const qaTechImages: Record<string, string> = {
+    Java: 'https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg',
+    Selenium: 'https://imgs.search.brave.com/VyPzInQxwSuARjEAv2CaUPXxtadWAcZqAiGg0VZDQoU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzM5LzIvc2VsZW5p/dW0tbG9nby1wbmdf/c2Vla2xvZ28tMzk0/NjE5LnBuZw',
+    TestNG: 'https://imgs.search.brave.com/ZbtpFA2CY-q47s7DPkhD7cXfbTrrVMvZ-EDk6-w-Jz0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/aW1nYmluLmNvbS8y/Mi8yMC8xNC9pbWdi/aW4tdGVzdG5nLWxv/Z28tc29mdHdhcmUt/dGVzdGluZy1zb2Z0/d2FyZS1mcmFtZXdv/cmstY29tcHV0ZXIt/aWNvbnMtYXV0b21h/dGlvbi10ZXN0aW5n/LWt3cEtZemo4a3FY/M3Z4dnRqbnRxeUxQ/REsuanBn',
+    Maven: 'https://maven.apache.org/images/maven-logo-black-on-white.png',
+    'Extent Reports': 'https://imgs.search.brave.com/u6eW06deFKbelzUv1FwF-S-QWd_591H-vSZs0squSOU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hLmZz/ZG4uY29tL2FsbHVy/YS9zL2FsbHVyZS1y/ZXBvcnQvaWNvbj8z/ZDRjN2JhOWNjYWQ5/ZmZlNWVlYmY1ZDg4/MzhhNGI1OGIwMjFk/Mjg2MDExODU3OGIw/YWU2OWUzM2JjZjA4/ZDBmPyZ3PTQ4',
+    Cucumber: 'https://cucumber.io/img/logo.svg',
+    JUnit: 'https://junit.org/junit5/assets/img/junit5-logo.png',
+    'Rest Assured': 'https://avatars.githubusercontent.com/u/19369327?s=200&v=4',
+    Postman: 'https://www.svgrepo.com/show/354202/postman-icon.svg',
+    Cypress: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Cypress.png',
+    JavaScript: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+    Mocha: 'https://imgs.search.brave.com/2sal57fIuDtVeniZ5WOJLLmkrKpqGvC9RNb2pnBx_a8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/aWNvbnNjb3V0LmNv/bS9pY29uL2ZyZWUv/cG5nLTI1Ni9mcmVl/LW1vY2hhLWxvZ28t/aWNvbi1kb3dubG9h/ZC1pbi1zdmctcG5n/LWdpZi1maWxlLWZv/cm1hdHMtLXByb2dy/YW1taW5nLWxhbmd1/YWdlLWxvZ29zLXBh/Y2staWNvbnMtMTE3/NTAxMi5wbmc_Zj13/ZWJwJnc9MjU2',
+    Chai: 'https://imgs.search.brave.com/DHNWSpgjFHYFPcH9XzQqQTZkBHweHto4qHPbOYYN_p4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2Vla3BuZy5jb20v/cG5nL2RldGFpbC81/MTktNTE5MDcyOV9j/aGFpLWpzLnBuZw',
+  };
+  // Choose the right project list
+  const projects = isDeveloperMode ? developerProjects : qaProjects;
 
   const techIcons: Record<string, React.ElementType | undefined> = {
     HTML: SiHtml5,
@@ -117,9 +181,7 @@ export default function Projects() {
     React: SiReact,
     Apifox: SiApifox,
     Tableau: SiTableau,
-    Excel: SiGithub,
     Python: SiPython,
-    'Azure Data Explorer': SiGooglecolab,
     'Google Colab': SiGooglecolab,
     SQLite: SiSqlite,
     MySQL: SiMysql,
@@ -127,14 +189,10 @@ export default function Projects() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+     <div className="container mx-auto px-4 py-12">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">
-          My Projects
+          {isDeveloperMode ? 'Developer Projects' : 'QA Projects'}
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -158,27 +216,35 @@ export default function Projects() {
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+
+                {/* 👇 Tech Stack */}
+                <div className="flex flex-wrap gap-3 mb-4">
                   {project.technologies.map((tech) => {
-                    const Icon = techIcons[tech] || SiGithub; // Fallback to GitHub icon if no match
-                    return (
-                      <div
-                        key={tech}
-                        className="relative group flex items-center justify-center w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full"
-                      >
-                        <Icon className="text-white w-6 h-6" />
-                        <span
-                          className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100"
-                        >
-                          {tech}
-                        </span>
-                      </div>
-                    );
+                    if (isDeveloperMode) {
+                      const Icon = techIcons[tech] || SiGithub;
+                      return (
+                        <div key={tech} className="relative group flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 p-2">
+                          <Icon className="text-white w-6 h-6" />
+                          <span className="tooltip">{tech}</span>
+                        </div>
+                      );
+                    } else {
+                      // QA logos as black & white images
+                      return (
+                        <div key={tech} className="relative group flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 p-1">
+                          <img
+                            src={qaTechImages[tech] || '/default-logo.png'}
+                            alt={tech}
+                            className="qa-tech-icon"
+                          />
+                          <span className="tooltip">{tech}</span>
+                        </div>
+                      );
+                    }
                   })}
                 </div>
+
                 <div className="flex gap-4">
                   <a
                     href={project.github}
