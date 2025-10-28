@@ -55,7 +55,7 @@ export default function Home() {
         >
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600">
             <Image
-              src="/mypic.jpg"
+              src="/myPic.jpg"
               alt="Profile Picture"
               fill
               className="object-cover"
